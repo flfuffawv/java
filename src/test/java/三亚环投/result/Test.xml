@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Default Suite" parallel="classes" thread-count="1">
+
+
+    <test name="检测管理－采样送样接样" preserve-order="true">
+        <classes >
+            <class name="三亚环投.result.runner"/>
+        </classes>
+    </test>
+
+
+  <listeners>
+    <listener class-name="三亚环投.result.runner" />
+  </listeners>
+</suite> <!-- Default Suite -->
+
