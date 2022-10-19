@@ -12,14 +12,14 @@ import org.springframework.test.context.ContextConfiguration;
 @CucumberOptions(
 
         monochrome = false,
-        glue = {"三亚环投.stepDefinitions"},
+        glue = {"SYHT.stepDefinitions"},
 
         // features = "src/test/java/三亚环投/Feature/登陆.feature",plugin = {"html:target/cucumber-reports/三亚环投.html","pretty"}
     // features = "src/test/java/三亚环投/Feature/采样任务通知单.feature",plugin = {"html:target/cucumber-reports/三亚环投.html","pretty"},
        // features = "src/test/java/三亚环投/Feature/采样记录.feature",plugin = {"html:target/cucumber-reports/三亚环投.html","pretty"}
        // features = "src/test/java/三亚环投/Feature/接样记录.feature",plugin = {"html:target/cucumber-reports/三亚环投.html","pretty"}//测试报告存放路径
        //  features = "src/test/java/三亚环投/Feature/长期委托.feature",plugin = {"html:target/cucumber-reports/三亚环投.html","pretty"},
-        features = "src/test/java/三亚环投/Feature/委托协议.feature",plugin = {"html:target/cucumber-reports/三亚环投.html","pretty" },
+        features = "src/test/java/SYHT/Feature/委托协议.feature",plugin = {"html:target/cucumber-reports/SYHT.html", "json:target/cumber-reports/cucumber.json", "junit:target/cumber-reports/junit","pretty" },
      //   features = "src/test/java/三亚环投/Feature/原始记录.feature",plugin = {"html:target/cucumber-reports/三亚环投.html","pretty"}
         tags = "@委托协议输入－送样 "
 
