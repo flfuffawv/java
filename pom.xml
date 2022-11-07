@@ -28,115 +28,88 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.14.2</version>
-                <executions>
-                    <execution>
-                        <id>run-cucumber</id>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <phase>test</phase>
-                        <configuration>
-                            <disableXmlReport>false</disableXmlReport>
-                            <includes>
-                                <include>src/java/SYHTresult/runner.java</include>
-                            </includes>
-                        </configuration>
-                    </execution>
-                </executions>
-                <configuration>
-                    <testFailureIgnore>
-                        true<!-- 因为要执行Cucumber -->
-                    </testFailureIgnore>
-                </configuration>
-
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.10</version>
-                <executions>
-                    <execution>
-                        <id>复制测试时用到的工具</id><!-- 由于我的测试中使用了aop，所以需要加这个配置 -->
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.aspectj</groupId>
-                                    <artifactId>aspectjweaver</artifactId>
-                                    <version>1.8.5</version>
-                                </artifactItem>
-                            </artifactItems>
-                            <stripVersion>true</stripVersion>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>获得jar在m2中的路径，供plugin引用</id>
-                        <goals>
-                            <goal>properties</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-
-                <version>3.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-
-                </configuration>
-
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
-            </plugin>
-        </plugins>
+                <configuration>
+
+                    <skipTests>false</skipTests>
+                    <testFailureIgnore>true</testFailureIgnore>
 
 
-    </build>
+                    <!--   <suiteXmlFiles>
+                           <suiteXmlFile>src/test/java/SYHT/result/Testng.xml</suiteXmlFile>
+                       </suiteXmlFiles>-->
+                        <disableXmlReport>true</disableXmlReport>
+                     <includes>
+                             <include>**/tesng_runner.java</include>
+                         </includes>
+                   </configuration>
+               </plugin>
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-dependency-plugin</artifactId>
+                   <version>2.10</version>
+               </plugin>
 
-<dependencies>
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+
+               <plugin>
+                   <groupId>org.codehaus.mojo</groupId>
+                   <artifactId>javancss-maven-plugin</artifactId>
+                   <version>2.1</version>
+
+               </plugin>
+               <plugin>
+                   <artifactId>maven-compiler-plugin</artifactId>
+
+                   <version>3.1</version>
+                   <configuration>
+                       <staleMillis>1</staleMillis>
+                       <useIncrementalCompilation>false</useIncrementalCompilation>
+                       <compilerArgs>
+                           <arg>-Xpkginfo:always</arg>
+                           <!-- 过期的方法的警告-->
+                          <arg>-Xlint:deprecation</arg>
+                      </compilerArgs>
+                      <source>1.8</source>
+                      <target>1.8</target>
+
+                  </configuration>
+
+              </plugin>
+
+          </plugins>
+
+
+      </build>
+
+  <dependencies>
+      <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 
     <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-java</artifactId>
         <version>3.8.0</version>
     </dependency>
+      <!--   <dependency>
+                  <groupId>org.testng</groupId>
+                  <artifactId>testng</artifactId>
+                  <version>6.9.9</version>
 
+      </dependency>-->
 
-
-
-
-
-
-    <dependency>
-        <groupId>org.apache.ant</groupId>
-        <artifactId>ant</artifactId>
-        <version>1.7.0</version>
-        <scope>compile</scope>
-    </dependency>
-    <!-- mvnrepository.com/artifact/org.apache.directory.studio/…-->
+      <dependency>
+          <groupId>org.apache.ant</groupId>
+          <artifactId>ant</artifactId>
+          <version>1.7.0</version>
+          <scope>compile</scope>
+      </dependency>
+      <!-- mvnrepository.com/artifact/org.apache.directory.studio/…-->
 
     <dependency>
         <groupId> org.apache.directory.studio </groupId>
         <artifactId>org.apache.commons.io </artifactId>
         <version> 2.4 </version>
     </dependency>
-    <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>6.9.9</version>
-        <scope>compile</scope>
-    </dependency>
+
     <dependency>
         <groupId>com.codeborne</groupId>
         <artifactId>selenide</artifactId>
@@ -170,7 +143,7 @@
         <groupId>io.cucumber</groupId>
         <artifactId>cucumber-junit</artifactId>
         <version>6.1.0</version>
-        <scope>compile</scope>
+         <scope>compile</scope>
     </dependency>
     <dependency>
         <groupId>io.cucumber</groupId>
@@ -189,19 +162,32 @@
         <version>1.2.5</version>
         <type>pom</type>
     </dependency>
+
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.13</version>
-        <scope>test</scope>
+     <scope>test</scope>
 
-    </dependency>
-    <dependency>
-        <groupId>net.masterthought</groupId>
-        <artifactId>cucumber-reporting</artifactId>
-        <version>4.0.0</version>
-    </dependency>
-    <!-- report-->
+
+  </dependency>
+      <dependency>
+          <groupId>io.cucumber</groupId>
+          <artifactId>cucumber-testng</artifactId>
+          <version>6.1.0</version>
+      </dependency>
+   <!--   <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>1.2.5</version>
+      </dependency>-->
+
+  <dependency>
+      <groupId>net.masterthought</groupId>
+      <artifactId>cucumber-reporting</artifactId>
+      <version>4.0.0</version>
+  </dependency>
+  <!-- report-->
     <dependency>
         <groupId>com.vimalselvam</groupId>
         <artifactId>cucumber-extentsreport</artifactId>
@@ -228,6 +214,7 @@
 
         <scope>test</scope>
     </dependency>
+
 
 
 
