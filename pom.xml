@@ -31,16 +31,16 @@
                 <version>2.12.4</version>
                 <configuration>
 
-                    <skipTests>false</skipTests>
+                    <skipTests>false</skipTests><!--这里不能选ture,不然jenkins运行不了-->
                     <testFailureIgnore>true</testFailureIgnore>
 
 
                     <!--   <suiteXmlFiles>
                            <suiteXmlFile>src/test/java/SYHT/result/Testng.xml</suiteXmlFile>
                        </suiteXmlFiles>-->
-                        <disableXmlReport>true</disableXmlReport>
+                     <disableXmlReport>true</disableXmlReport>
                      <includes>
-                             <include>**/tesng_runner.java</include>
+                             <include>**/SyhtRunner.java</include><!--这是运行junit+cucumber-->
                          </includes>
                    </configuration>
                </plugin>
@@ -62,13 +62,6 @@
 
                    <version>3.1</version>
                    <configuration>
-                       <staleMillis>1</staleMillis>
-                       <useIncrementalCompilation>false</useIncrementalCompilation>
-                       <compilerArgs>
-                           <arg>-Xpkginfo:always</arg>
-                           <!-- 过期的方法的警告-->
-                          <arg>-Xlint:deprecation</arg>
-                      </compilerArgs>
                       <source>1.8</source>
                       <target>1.8</target>
 
@@ -168,19 +161,17 @@
         <artifactId>junit</artifactId>
         <version>4.13</version>
      <scope>test</scope>
-
-
-  </dependency>
-      <dependency>
-          <groupId>io.cucumber</groupId>
+       </dependency>
+      <!--  <dependency>
+              <groupId>io.cucumber</groupId>
+              <artifactId>cucumber-testng</artifactId>
+              <version>6.1.0</version>
+          </dependency>--><!--运行junit+cucumber这个不需要-->
+       <!--   <dependency>
+          <groupId>info.cukes</groupId>
           <artifactId>cucumber-testng</artifactId>
-          <version>6.1.0</version>
-      </dependency>
-   <!--   <dependency>
-      <groupId>info.cukes</groupId>
-      <artifactId>cucumber-testng</artifactId>
-      <version>1.2.5</version>
-      </dependency>-->
+          <version>1.2.5</version>
+          </dependency>-->
 
   <dependency>
       <groupId>net.masterthought</groupId>
