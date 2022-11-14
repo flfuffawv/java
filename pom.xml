@@ -40,7 +40,7 @@
                        </suiteXmlFiles>-->
                      <disableXmlReport>true</disableXmlReport>
                      <includes>
-                             <include>**/SyhtRunner.java</include><!--这是运行junit+cucumber-->
+                             <include>**/HRRunner.java</include><!--这是运行junit+cucumber-->
                          </includes>
                    </configuration>
                </plugin>
