@@ -2,6 +2,7 @@ package HR.stepDefinitions;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.testng.ScreenShooter;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
@@ -35,8 +36,8 @@ public class Login {
             Configuration.browser = "chrome";
             Configuration.reportsFolder = "target/reports/HR/test"+Configuration.browser;
             Configuration.reopenBrowserOnFail=true;
-            Configuration.holdBrowserOpen = true;
-            // Configuration.pollingInterval=10000;
+            Configuration.holdBrowserOpen = false;
+            Configuration.pollingInterval=10000;
             Configuration.headless=false;//运行时无窗口显示,只适合chrome59+版和firefox56+版
             System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY,"true");
 
@@ -55,7 +56,7 @@ public class Login {
 
         }
 
-        open("http://192.168.5.35:9800/hrDesign/a/D/login1/top");
+        open("http://192.168.5.35:9800/hrDesign/");
 
         sleep(2000);
     }
