@@ -35,11 +35,12 @@ public class BasicCompany {
 
 
     }
-    @Given("HR-删除公司\"(.*)\"$")
-    public void del_company(String c_cd ){
+    @Given("HR-删除公司\"(.*)\"\"(.*)\"$")
+    public void del_company(String c_cd,String c_nm ){
         switchTo().defaultContent();
         switchTo().frame($(By.xpath("//iframe[contains(@src,'basic/company/list')]")));
         $(By.name("c_cd")).sendKeys(c_cd);
+        $(By.name("c_nm")).sendKeys(c_nm);
         $(By.name("_id_LTaSG3260")).click();
 
         $(By.xpath("/html/body/div[2]/div[2]/div/div/div[2]/table/tbody/tr[2]/td[2]")).waitUntil(exist,1000).click();
