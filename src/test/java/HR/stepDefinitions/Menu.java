@@ -19,4 +19,13 @@ sleep(3000);
     public void 考勤管理(){
         $(By.name("_idMlg72704")).waitUntil(Condition.exist,3000).click();
     }
+    @Given("HR-点击组别")
+    public void 组别(){
+        $(By.xpath("//div[@id='_id_menu_2']/div[2]/label")).waitUntil(Condition.exist,3000).click();
+
+    }
+    @Given("HR-用例备注\"(.*)\"$")
+    public void 用例备注(String remark){
+        String str = remark;
+    }
 }
